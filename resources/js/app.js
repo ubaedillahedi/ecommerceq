@@ -30,3 +30,12 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+$(document).on('click', '#clickme', function(){
+    alert('You clicked me');
+});
+
+$(document).on('click', '#clicksuccess', function(){
+    console.log('Huahhhh')
+});
+
