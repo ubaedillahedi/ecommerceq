@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Category' => $baseDir . '/app/Category.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -14,14 +15,17 @@ return array(
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
+    'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\CheckForMaintenanceMode' => $baseDir . '/app/Http/Middleware/CheckForMaintenanceMode.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
     'App\\Http\\Middleware\\RedirectIfAuthenticated' => $baseDir . '/app/Http/Middleware/RedirectIfAuthenticated.php',
+    'App\\Http\\Middleware\\Role' => $baseDir . '/app/Http/Middleware/Role.php',
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Product' => $baseDir . '/app/Product.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',
@@ -2436,6 +2440,7 @@ return array(
     'PhpParser\\Parser\\Tokens' => $vendorDir . '/nikic/php-parser/lib/PhpParser/Parser/Tokens.php',
     'PhpParser\\PrettyPrinterAbstract' => $vendorDir . '/nikic/php-parser/lib/PhpParser/PrettyPrinterAbstract.php',
     'PhpParser\\PrettyPrinter\\Standard' => $vendorDir . '/nikic/php-parser/lib/PhpParser/PrettyPrinter/Standard.php',
+    'ProductSeeder' => $baseDir . '/database/seeds/ProductSeeder.php',
     'Prophecy\\Argument' => $vendorDir . '/phpspec/prophecy/src/Prophecy/Argument.php',
     'Prophecy\\Argument\\ArgumentsWildcard' => $vendorDir . '/phpspec/prophecy/src/Prophecy/Argument/ArgumentsWildcard.php',
     'Prophecy\\Argument\\Token\\AnyValueToken' => $vendorDir . '/phpspec/prophecy/src/Prophecy/Argument/Token/AnyValueToken.php',

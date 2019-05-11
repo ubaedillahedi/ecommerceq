@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Symfony\Component\HttpFoundation\Response;
+use Auth;
 
 class Role
 {

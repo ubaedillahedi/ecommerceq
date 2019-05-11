@@ -33,7 +33,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @if(Auth::check())
+                            <li><a class="nav-link" href="{{ url('/home') }}">Home</a></li>
+                            @can('admin-access')
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Manage <span class="caret"></span>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="{{ route('categories.index') }}"> <i class="fa fa-btn fa-tags"></i> Categories</a>
+                                    </div>
+                                </li>
+                            @endcan
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
