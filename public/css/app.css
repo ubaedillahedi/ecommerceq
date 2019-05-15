@@ -13724,3 +13724,11 @@ a.text-dark:focus {
   border-radius: 10px;
 }
 
+.find-field {
+  margin-right: 7px;
+}
+
+.form-inline {
+  margin-bottom: 10px;
+}
+

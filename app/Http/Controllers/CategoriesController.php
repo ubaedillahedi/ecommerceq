@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 
 class CategoriesController extends Controller
 {
@@ -18,9 +19,10 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('categories.index');
+        $categories = Category::where('title', 'LIKE', '%' . $request->get('q') . '%')->paginate(5);
+        return view('categories.index', compact('categories'));
     }
 
     /**
