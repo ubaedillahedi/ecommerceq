@@ -49316,7 +49316,7 @@ $(document).on('click', '.js-submit-confirm', function (event) {
     title: 'Kamu yakin?',
     text: text,
     icon: "warning",
-    buttons: true,
+    buttons: ["Batal", "Yap, Lanjutkan!"],
     dangerMode: true
   }).then(function (willDelete) {
     if (willDelete) {
