@@ -14,6 +14,18 @@ class Category extends Model
         return $this->hasMany('App\Category', 'parent_id');
     }
 
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function($model){
+            $model->products()->detach();
+            foreach ($model->childs as $child) {
+                $child->parent_id = '';
+                $child->save();
+            }
+        });
+    }
+
     public function parent()
     {
         return $this->belongsTo('App\Category', 'parent_id');

@@ -11,6 +11,11 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js').version();
+mix.js([
+        'resources/js/app.js',
+        'node_modules/sweetalert/dist/sweetalert.min.js'
+    ], 'public/js').version();
 mix.sass('resources/sass/app.scss', 'public/css').version();
-mix.styles('public/css/utilize.css', 'public/css/all.css');
+mix.styles([
+        'public/css/utilize.css'
+    ], 'public/css/all.css');
