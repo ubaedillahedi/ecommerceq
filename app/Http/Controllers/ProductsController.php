@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use File;
 
 class ProductsController extends Controller
 {
@@ -83,7 +84,8 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::findorfail($id);
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -95,7 +97,34 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::findorfail($id);
+        $this->validate($request, [
+            'name' => 'required|unique:products,name,'. $product->id,
+            'model' => 'required',
+            'photo' => 'mimes:jpeg,png|max:10240',
+            'price' => 'required|numeric|min:1000'
+        ]);
+        $data = $request->only('name', 'model', 'price');
+        if($request->hasFile('photo'))
+        {
+            $data['photo'] = $this->savePhoto($request->file('photo'));
+            if($product->photo !== '') $this->deletePhoto($product->photo);
+        }
+
+        $product->update($data);
+        if(count($request->get('category_lists')) > 0)
+        {
+            $product->categories()->sync($request->get('category_lists'));
+        }
+        else
+        {
+            /**
+             * no category set, detach all
+             */
+            $product->categories()->detach();
+        }
+
+        return redirect()->route('products.index')->with('updated', 'Produk ' . $request->get('name') . ' diperbaharui');
     }
 
     /**
@@ -115,5 +144,11 @@ class ProductsController extends Controller
         $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'img';
         $photo->move($destinationPath, $filename);
         return $filename;
+    }
+
+    protected function deletePhoto($filename)
+    {
+        $path = public_path() . DIRECTORY_SEPARATOR . 'img' . DIRECTORY_SEPARATOR . $filename;
+        return File::delete($path);
     }
 }
