@@ -19,6 +19,9 @@ class Category extends Model
         parent::boot();
         static::deleting(function($model){
             $model->products()->detach();
+            /**
+             * Remove parent from this category's child
+             */
             foreach ($model->childs as $child) {
                 $child->parent_id = '';
                 $child->save();
