@@ -13,9 +13,11 @@ const mix = require('laravel-mix');
 
 mix.js([
         'resources/js/app.js',
-        'node_modules/sweetalert/dist/sweetalert.min.js'
+        'node_modules/sweetalert/dist/sweetalert.min.js',
+        'node_modules/selectize/dist/js/standalone/selectize.min.js'
     ], 'public/js').version();
 mix.sass('resources/sass/app.scss', 'public/css').version();
 mix.styles([
-        'public/css/utilize.css'
+        'public/css/utilize.css',
+        'node_modules/selectize/dist/css/selectize.bootstrap3.css'
     ], 'public/css/all.css');

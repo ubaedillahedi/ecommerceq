@@ -31,6 +31,11 @@ const app = new Vue({
     el: '#app',
 });
 
+$(document).ready(function(){
+    $('.js-selectize').selectize({
+        sortField: 'text'
+    });
+});
 $(document).on('click', '#clickme', function(){
     alert('You clicked me');
 });

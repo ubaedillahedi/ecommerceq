@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Product;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ProductsController extends Controller
 {
@@ -35,7 +36,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -46,7 +47,21 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:products',
+            'model' => 'required',
+            'photo' => 'mimes:jpeg,png|max:10240',
+            'price' => 'required|numeric|min:1000'
+        ]);
+
+        $data = $request->only('name', 'model', 'price');
+        if($request->hasFile('photo'))
+        {
+            $data['photo'] = $this->savePhoto($request->file('photo'));
+        }
+        $product = Product::create($data);
+        $product->categories()->sync($request->get('category_lists'));
+        return redirect()->route('products.index')->with('success', 'Produk ' . $request->get('name') . ' disimpan');
     }
 
     /**
@@ -92,5 +107,13 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function savePhoto(UploadedFile $photo)
+    {
+        $filename = str_random(40) . '.' . $photo->guessClientExtension();
+        $destinationPath = public_path() . DIRECTORY_SEPARATOR . 'img';
+        $photo->move($destinationPath, $filename);
+        return $filename;
     }
 }

@@ -43,6 +43,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item" href="{{ route('categories.index') }}"> <i class="fa fa-btn fa-tags"></i> Categories</a>
+                                        <a class="dropdown-item" href="{{ route('products.index') }}"> <i class="fa fa-btn fa-tags"></i> Products</a>
                                     </div>
                                 </li>
                             @endcan
