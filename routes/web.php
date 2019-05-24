@@ -22,4 +22,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'web'], function(){
     Route::resource('categories', 'CategoriesController');
     Route::resource('products', 'ProductsController');
+    Route::get('/', 'CatalogsController@index');
 });
