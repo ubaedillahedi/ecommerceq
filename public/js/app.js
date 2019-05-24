@@ -49346,6 +49346,23 @@ $(document).on('click', '.js-submit-confirm', function (event) {
     }
   });
 });
+$(document).on('click', '.js-submit-confirm-product', function (event) {
+  event.preventDefault();
+  var $form = $(this).closest('form');
+  var $el = $(this);
+  var text = $el.data('confirm-message') ? $el.data('confirm-message') : 'Kamu tidak akan bisa membatalkan proses ini!';
+  swal({
+    title: 'Kamu yakin?',
+    text: text,
+    icon: "warning",
+    buttons: ["Batal", "Yap, Lanjutkan!"],
+    dangerMode: true
+  }).then(function (willDelete) {
+    if (willDelete) {
+      $form.submit();
+    }
+  });
+});
 
 /***/ }),
 

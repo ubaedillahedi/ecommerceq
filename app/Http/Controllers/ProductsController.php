@@ -135,7 +135,10 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        if($product->photo !== '') $this->deletePhoto($product->photo);
+        $product->delete();
+        return redirect()->route('products.index')->with('deleted', 'Produk ' . $product->name . ' dihapus');
     }
 
     protected function savePhoto(UploadedFile $photo)

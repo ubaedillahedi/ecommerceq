@@ -21,4 +21,15 @@ class Product extends Model
         }
         return $this->categories->pluck('id')->all();
     }
+
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function($model){
+            /**
+             * remove relations to category
+             */
+            $model->categories()->detach();
+        });
+    }
 }

@@ -35,10 +35,10 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    {!! Form::model($product, ['route' => ['products.destroy', $category], 'method' => 'delete', 'class' => 'form-inline']) !!}
+                                    {!! Form::model($product, ['route' => ['products.destroy', $product], 'method' => 'delete', 'class' => 'form-inline']) !!}
                                         <a href="{{ route('products.edit', $product->id) }}">Ubah</a>
                                         &nbsp;|&nbsp;
-                                        {!! Form::submit('delete', ['class' => 'btn btn-danger btn-sm js-submit-confirmation']) !!}
+                                        {!! Form::submit('delete', ['class' => 'btn btn-danger btn-sm js-submit-confirm-product']) !!}
                                     {!! Form::close() !!}
                                 </td>
                             </tr>
