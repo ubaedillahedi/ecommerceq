@@ -39,4 +39,49 @@ class Category extends Model
         return $this->belongsToMany('App\Product');
     }
 
+    /**
+     * Get all product id from active category and its child
+     */
+    public function getRelatedProductsIdAttribute()
+    {
+        $result = $this->products->pluck('id')->toArray();
+        foreach ($this->childs as $child)
+        {
+            $result = array_merge($result, $child->related_products_id);
+        }
+        return $result;
+    }
+
+    /**
+     *
+     */
+    public function scopeNoParent($query)
+    {
+        return $this->where('parent_id', '');
+    }
+
+    /**
+     *
+     */
+    public function getTotalProductsAttribute()
+    {
+        return Product::whereIn('id', $this->related_products_id)->count();
+    }
+
+    /**
+     *
+     */
+    public function hasParent()
+    {
+        return $this->parent_id > 0;
+    }
+
+    /**
+     *
+     */
+    public function hasChild()
+    {
+        return $this->childs()->count() > 0;
+    }
+
 }
