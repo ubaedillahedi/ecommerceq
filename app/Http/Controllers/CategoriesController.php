@@ -45,8 +45,7 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|string|max:255|unique:categories',
-            'parent_id' => 'exists:categories,id'
+            'title' => 'required|string|max:255|unique:categories'
         ]);
         Category::create($request->all());
         // \Flash::success('Kategori' . $request->get('title'), ' disimpan');
