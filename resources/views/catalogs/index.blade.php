@@ -47,7 +47,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="pull-right mg-top-30-px">
-                            {!! $products->appends(compact('cat', 'q'))->links() !!}
+                            {!! $products->appends(compact('cat', 'q', 'sort', 'order'))->links() !!}
                         </div>
                     </div>
                 </div>
